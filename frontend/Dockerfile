@@ -1,5 +1,5 @@
 # -------- Build Stage --------
-FROM node:25-alpine AS build
+FROM node:20-alpine AS build
 
 WORKDIR /app
 
@@ -12,7 +12,7 @@ COPY . .
 RUN npm run build
 
 # -------- Production Stage -------- 
-FROM nginx:1.29-alpine AS prod
+FROM nginx:1.27-alpine AS prod
 
 # Security: remove default nginx config
 RUN rm -rf /usr/share/nginx/html/* /etc/nginx/conf.d/default.conf

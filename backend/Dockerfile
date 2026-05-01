@@ -1,16 +1,16 @@
 # -------- Build Stage --------
-FROM node:25-alpine AS build
+FROM node:20-alpine AS build
 
 WORKDIR /app
 
-COPY package.json package-lock.json* .
+COPY package.json package-lock.json* ./
 
 RUN npm ci --only=production && npm cache clear --force
 
 COPY . .
 
 # ---- Production stage ----
-FROM node:25-alpine AS prod
+FROM node:20-alpine AS prod
 
 # Security: run as non-root user
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
