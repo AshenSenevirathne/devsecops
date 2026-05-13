@@ -256,6 +256,8 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 5
             timeoutSeconds: 3
+      imagePullSecrets:
+        - name: github-container-registry
 
 ---
 # ---- Backend Service (ClusterIP — internal only) ----
@@ -338,6 +340,8 @@ spec:
               port: 8080
             initialDelaySeconds: 3
             periodSeconds: 5
+      imagePullSecrets:
+        - name: github-container-registry
 
 ---
 # ---- Frontend Service (NodePort — for access via port-forward or node IP) ----
